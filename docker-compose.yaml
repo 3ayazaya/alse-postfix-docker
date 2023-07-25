@@ -1,0 +1,15 @@
+version: '2.4'
+services:
+  postfix:
+    restart: 'always'
+    container_name: postfix
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '25:25'
+    volumes:
+      - ./data/spool:/var/spool/postfix:rw
+      - /etc/timezone:/etc/timezone:ro
